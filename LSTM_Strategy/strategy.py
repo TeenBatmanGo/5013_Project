@@ -16,7 +16,7 @@ interval = 15
 asset_index = 0
 my_cash_balance_lower_limit = 3000000
 
-model_dir = '/Users/wangchengming/Documents/5013Project/MSBD5013/pythonplatform/'
+model_dir = '/Users/wangchengming/Documents/HKUST/5013/MSBD5013/pythonplatform/'
 model = load_model(model_dir + 'LSTM_15_model.h5')
 
 
@@ -78,23 +78,23 @@ def handle_bar(timer, data, info, init_cash, transaction, detail_last_min, memor
 
         if (preds[-1]-preds[0])/preds[0] >= 0.004 and sto < 20:
             if detail_last_min[1] > my_cash_balance_lower_limit:
-                print('----------------Buy 100')
-                position_new[asset_index] += 100
-
-        elif (preds[-1]-preds[0])/preds[0] <= -0.004 and (sto > 80 or sto == -1):
-            if detail_last_min[1] > my_cash_balance_lower_limit:
-                print('----------------Sell 100')
-                position_new[asset_index] -= 100
-
-        elif (0.0001 < (preds[-1]-preds[0])/preds[0] < 0.004) and sto < 50:
-            if detail_last_min[1] > my_cash_balance_lower_limit:
                 print('----------------Buy 50')
                 position_new[asset_index] += 50
 
-        elif (-0.004 < (preds[-1]-preds[0])/preds[0] < -0.0001) and (sto > 50 or sto == -1):
+        elif (preds[-1]-preds[0])/preds[0] <= -0.004 and (sto > 80 or sto == -1):
             if detail_last_min[1] > my_cash_balance_lower_limit:
                 print('----------------Sell 50')
                 position_new[asset_index] -= 50
+
+        elif (0.0001 < (preds[-1]-preds[0])/preds[0] < 0.004) and sto < 50:
+            if detail_last_min[1] > my_cash_balance_lower_limit:
+                print('----------------Buy 30')
+                position_new[asset_index] += 30
+
+        elif (-0.004 < (preds[-1]-preds[0])/preds[0] < -0.0001) and (sto > 50 or sto == -1):
+            if detail_last_min[1] > my_cash_balance_lower_limit:
+                print('----------------Sell 30')
+                position_new[asset_index] -= 30
 
     else:
         memory.temp_data_list.append(data)

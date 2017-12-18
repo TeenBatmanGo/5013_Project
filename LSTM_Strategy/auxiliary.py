@@ -5,7 +5,7 @@ import h5py
 import os
 
 
-os.chdir('/Users/wangchengming/Documents/5013Project/MSBD5013/pythonplatform')
+os.chdir('/Users/wangchengming/Documents/HKUST/5013/MSBD5013/pythonplatform/')
 scaler = pd.read_json('scaler.json')
 min_val = scaler['min'].values
 range_val = scaler.range.values

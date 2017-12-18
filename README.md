@@ -1,2 +1,3 @@
-# HKUST_5013_Project
-This project is currently under work.
+# HKUST 5013 Statistical Prediction
+
+# Stock Trading Project
